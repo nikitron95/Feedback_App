@@ -115,7 +115,7 @@ function ScannerScreen({ navigation }) {
     if (match.scheme === "myapp" && match.queryParams.id) {
       navigation.navigate("Feedback", { id: match.queryParams.id })
     } else {
-      Alert.alert("QR Code does not contain valid data")
+      Alert.alert("QR-Code enthält keine gültigen Daten")
     }
   }
 
