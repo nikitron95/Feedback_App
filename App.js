@@ -13,7 +13,6 @@ const restaurants = {
 
 // Dummy QuestionPage Component
 function Feedback({ route, navigation }) {
-  // Assume you're getting the ID from the route, which you'll use to fetch or display questions
   const { id } = route.params
   // Holen Sie den Restaurant-Namen basierend auf der ID
   const restaurantName = restaurants[id] || "Unbekanntes Restaurant"
@@ -35,7 +34,6 @@ function Feedback({ route, navigation }) {
   }
 
   return (
-    // Your question component here
     <View style={styles.container}>
       <Text style={styles.restaurantName}>{restaurantName}</Text>
       <View style={styles.tableRow}>
@@ -78,7 +76,7 @@ function Feedback({ route, navigation }) {
             } else if (text === "") {
               setRating("")
             }
-          }} // Ermöglicht nur Zahlen von 1 bis 9
+          }}
           placeholder="Bewertung"
           keyboardType="numeric"
         />
@@ -86,7 +84,7 @@ function Feedback({ route, navigation }) {
       <View style={styles.tableRow}>
         <Text style={styles.tableCell}>Service-Kommentare:</Text>
         <TextInput
-          style={[styles.input, { height: 100 }]} // Erhöhen der Höhe für das mehrzeilige TextInput
+          style={[styles.input, { height: 100 }]}
           value={serviceComment}
           onChangeText={setServiceComment}
           placeholder="Ihre Kommentare zum Service"
@@ -111,15 +109,10 @@ function ScannerScreen({ navigation }) {
   }, [])
 
   const handleBarCodeScanned = ({ type, data }) => {
-    // Assuming the QR data is a URL with a pattern like "myapp://questions?id=123"
     let match = Linking.parse(data)
     console.log(match, data)
 
-    if (
-      match.scheme === "myapp" &&
-      // match.path === "questions" &&
-      match.queryParams.id
-    ) {
+    if (match.scheme === "myapp" && match.queryParams.id) {
       navigation.navigate("Feedback", { id: match.queryParams.id })
     } else {
       Alert.alert("QR Code does not contain valid data")
@@ -163,7 +156,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingTop: 50, // Etwas Abstand von der oberen Kante
+    paddingTop: 50,
   },
   restaurantName: {
     fontSize: 24,
@@ -175,15 +168,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginVertical: 10,
-    width: "80%", // 80% der Containerbreite
+    width: "80%",
   },
   tableCell: {
     fontSize: 18,
   },
   input: {
-    borderBottomWidth: 1, // Fügt eine Unterstreichung hinzu
-    flex: 1, // Ermöglicht es, den verfügbaren Platz innerhalb der tableRow zu füllen
-    marginLeft: 10, // Fügt einen kleinen Abstand nach links hinzu
-    paddingVertical: 5, // Ein bisschen vertikaler Padding
+    borderBottomWidth: 1,
+    flex: 1,
+    marginLeft: 10,
+    paddingVertical: 5,
   },
 })
