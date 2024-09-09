@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Button, Alert, TextInput } from "react-native"
 import { BarCodeScanner } from "expo-barcode-scanner"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage"
 import * as Linking from "expo-linking"
 
 const restaurants = {
